@@ -1,0 +1,13 @@
+[Unit]
+Description=Board MQTT interface for Home Logic
+After=syslog.target network.target mosquitto.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/pi/scripts/python/alpha-ess-web_mqtt/alpha-ess-web_mqtt.py
+User=root
+Restart=always
+RestartSec=2s
+
+[Install]
+WantedBy=multi-user.target
