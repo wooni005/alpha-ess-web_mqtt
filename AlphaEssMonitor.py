@@ -56,8 +56,8 @@ class AlphaEssMonitor():
             'pv': self.get_value(pvchartcontainerId),
             'load': self.get_value(loadchartcontainerId),
             'battery': self.get_value(batterychartcontainerId),
-            'feed_in': self.get_value(feedinchartcontainerId),
-            'grid_consumption': self.get_value(gridchartcontainerId)
+            'feed-in': self.get_value(feedinchartcontainerId),
+            'grid-consumption': self.get_value(gridchartcontainerId)
         }
 
     def get_value(self, id):
