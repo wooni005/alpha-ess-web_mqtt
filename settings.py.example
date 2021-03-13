@@ -1,0 +1,13 @@
+MQTT_ServerIP     = "localhost" # Fill in your Mosquitto server IP address if it's not running on same machine
+MQTT_ServerPort   = 1883
+LOG_FILENAME      = "/home/pi/log/alpha-ess-web_mqtt.log"
+
+ALPHAESS_USERNAME = 'username' # Fill in your AlphaESS username same as on alpaess.com
+ALPHAESS_PASSWORD = 'password' # Fill in your AlphaESS password same as on alpaess.com
+
+# Add an extra 49 seconds processing timem. Less than 60sec does not make sense,
+# because the webinterface gets arround every 5 min a data update.
+ALPHAESS_WAIT     = 120 #[sec]
+
+MQTT_TOPIC_CHECK  = "huis/AlphaEss/RPiHome/check"
+MQTT_TOPIC_REPORT = "huis/AlphaEss/RPiHome/report"
