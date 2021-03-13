@@ -46,7 +46,7 @@ class AlphaEssMonitor():
         gridchartcontainerId = '5'
 
         self.driver.refresh()
-        WebDriverWait(self.driver, 15000).until(
+        WebDriverWait(self.driver, 60).until(
             expected_conditions.visibility_of_element_located((By.ID, "tab-2")))
         sleep(10)
         self.driver.find_element(By.ID, "tab-2").click()

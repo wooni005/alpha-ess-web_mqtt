@@ -84,7 +84,7 @@ def alphaEssThread():
         traceback.print_exc()
 
         #Report failure to Home Logic system check
-        serviceReport.sendFailureToHomeLogic(serviceReport.ACTION_NOTHING, 'Failed to open Chrome Driver')
+        serviceReport.sendFailureToHomeLogic(serviceReport.ACTION_NOTHING, 'Failed to open Chrome driver')
         exit = True
         return
 
@@ -93,6 +93,9 @@ def alphaEssThread():
 
     print("Start AlphaEss monitor")
     monitor.start(chromeDriver)
+
+    # Delay after monitor start, otherwise url errors when getting data
+    time.sleep(5)
 
     while not exit:
         try:
