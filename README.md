@@ -15,14 +15,10 @@ Rename the settings.py.example file into setting.py file and adapt the settings.
 
 ## MQTT output
 
-The service will produce the following MQTT output derived from the AlphaEss.com website:
+The service will produce the following MQTT JSON message based on the data of the AlphaEss.com website:
 
 ```
-huis/AlphaESS/pv/solar 0.0
-huis/AlphaESS/load/solar 0.6
-huis/AlphaESS/battery/solar 40.0
-huis/AlphaESS/feed_in/solar 0.0
-huis/AlphaESS/grid_consumption/solar 0.6
+huis/AlphaESS/AlphaESS/solar {'pv': 0.0, 'load': 3.2, 'battery': 54.8, 'feed-in': 0.0, 'grid-consumption': 0.0}
 ```
 
 ## Thanks
