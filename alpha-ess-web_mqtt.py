@@ -32,6 +32,7 @@ chromeDriver = None
 monitor = None
 alphaEssStatus = {}
 
+
 def signal_handler(_signal, frame):
     global exit
 
@@ -107,7 +108,7 @@ def alphaEssThread():
                 alphaEssStatus[key] = monitor_data[key]
                 serviceReport.systemWatchTimer = current_sec_time()
 
-            mqtt_publish.single("huis/AlphaESS/AlphaESS/solar", json.dumps(alphaEssStatus, separators=(', ', ':')), qos=1, hostname=settings.MQTT_ServerIP, retain=True)
+            mqtt_publish.single("huis/AlphaESS/Web/solar", json.dumps(alphaEssStatus, separators=(', ', ':')), qos=1, hostname=settings.MQTT_ServerIP, retain=True)
 
             # print("Waiting %d seconds" % settings.ALPHAESS_WAIT)
             time.sleep(settings.ALPHAESS_WAIT)

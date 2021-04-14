@@ -1,5 +1,5 @@
 [Unit]
-Description=Board MQTT interface for Home Logic
+Description=Alpha ESS Storion T10 web to MQTT
 After=syslog.target network.target mosquitto.target
 
 [Service]
