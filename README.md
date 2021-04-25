@@ -2,6 +2,12 @@
 
 This service gets the webdata from the alphaess.com and publishes it via MQTT. It runs on a Raspberry Pi.
 
+## Install python modules
+The following python3 modules are needed:
+```
+$ sudo pip3 install simplejson paho-mqtt
+```
+
 ## Install the Chrome driver
 
 ```
