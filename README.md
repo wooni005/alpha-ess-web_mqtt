@@ -29,4 +29,4 @@ huis/AlphaESS/AlphaESS/solar {'pv': 0.0, 'load': 3.2, 'battery': 54.8, 'feed-in'
 
 ## Thanks
 
-Thanks to DasLezteEinhorn for the [AlphaEssMonitor.py file](https://github.com/DasLetzteEinhorn/AlphaESS_Monitor_Hass)
+Thanks to [DasLetzteEinhorn](https://github.com/DasLetzteEinhorn) and [MarioCakeDev](https://github.com/MarioCakeDev) for the [AlphaEssMonitor.py file](https://github.com/DasLetzteEinhorn/AlphaESS_Monitor_Hass)
