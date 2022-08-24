@@ -1,15 +1,15 @@
-MQTT_ServerIP     = "localhost" # Fill in your Mosquitto server IP address if it's not running on same machine
-MQTT_ServerPort   = 1883
-LOG_FILENAME      = "/home/pi/log/alpha-ess-web_mqtt.log"
+MQTT_ServerIP = "localhost"  # Fill in your Mosquitto server IP address if it's not running on same machine
+MQTT_ServerPort = 1883
+LOG_FILENAME = "/home/pi/log/alpha-ess-web_mqtt.log"
 
-ALPHAESS_HOST     = 'https://www.alphaess.com/'
-ALPHAESS_USERNAME = 'username' # Fill in your AlphaESS username same as on alpaess.com
-ALPHAESS_PASSWORD = 'password' # Fill in your AlphaESS password same as on alpaess.com
+ALPHAESS_HOST = 'https://www.alphaess.com/'
+ALPHAESS_USERNAME = 'username'  # Fill in your AlphaESS username same as on alpaess.com
+ALPHAESS_PASSWORD = 'password'  # Fill in your AlphaESS password same as on alpaess.com
 
 # Add an extra 38 seconds processing timem. Less than 200 sec does not make sense,
 # because the webinterface gets arround every 300 sec (5min) an update.
 ALPHAESS_WAIT     = 200 #[sec]
 
-MQTT_TOPIC_OUT    = 'huis/AlphaEss/+/settings'
-MQTT_TOPIC_CHECK  = "huis/AlphaEss/RPiHome/check"
+MQTT_TOPIC_OUT = 'huis/AlphaEss/+/settings'
+MQTT_TOPIC_CHECK = "huis/AlphaEss/RPiHome/check"
 MQTT_TOPIC_REPORT = "huis/AlphaEss/RPiHome/report"

@@ -8,7 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 import settings
 
 
-class AlphaEssMonitor():
+class AlphaEssMonitor:
     def __init__(self, user_name, password, host=settings.ALPHAESS_HOST):
         # print("AlphaEssMonitor: __init__")
         self.user_name = user_name
@@ -60,8 +60,8 @@ class AlphaEssMonitor():
             'grid_consumption': self.get_value(gridchartcontainerId)
         }
 
-    def get_value(self, id):
+    def get_value(self, _id):
         WebDriverWait(self.driver, 5000).until(
-            expected_conditions.presence_of_element_located((By.CSS_SELECTOR, ".pie-data-container > :nth-child(" + id + ") tspan")))
+            expected_conditions.presence_of_element_located((By.CSS_SELECTOR, ".pie-data-container > :nth-child(" + _id + ") tspan")))
         sleep(2)
-        return float(re.sub("%|kW", "", self.driver.find_element_by_css_selector(".pie-data-container > :nth-child(" + id + ") tspan").text))
+        return float(re.sub("%|kW", "", self.driver.find_element_by_css_selector(".pie-data-container > :nth-child(" + _id + ") tspan").text))

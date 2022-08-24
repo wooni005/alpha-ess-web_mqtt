@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import os
 import signal
 import time
-import serial
 import _thread
 import traceback
 from queue import Queue
@@ -23,38 +21,44 @@ import settings
 import AlphaEssMonitor
 
 sendQueue = Queue(maxsize=0)
-current_sec_time = lambda: int(round(time.time()))
-current_milli_time = lambda: int(round(time.time() * 1000))
 oldTimeout = 0
 
-exit = False
+exitThread = False
 chromeDriver = None
 monitor = None
 alphaEssStatus = {}
 
 
+def current_sec_time():
+    return int(round(time.time()))
+
+
+def current_milli_time():
+    return int(round(time.time() * 1000))
+
+
 def signal_handler(_signal, frame):
-    global exit
+    global exitThread
 
     print('You pressed Ctrl+C!')
-    exit = True
+    exitThread = True
 
 
 # The callback for when the client receives a CONNACK response from the server.
-def on_connect(client, userdata, flags, rc):
+def on_connect(_client, userdata, flags, rc):
     if rc == 0:
         print("MQTT Client connected successfully")
-        client.subscribe([(settings.MQTT_TOPIC_OUT, 1), (settings.MQTT_TOPIC_CHECK, 1)])
+        _client.subscribe([(settings.MQTT_TOPIC_OUT, 1), (settings.MQTT_TOPIC_CHECK, 1)])
     else:
         print(("ERROR: MQTT Client connected with result code %s " % str(rc)))
 
 
-# The callback for when a PUBLISH message is received from the server
-def on_message(client, userdata, msg):
+# The callback for when a published message is received from the server
+def on_message(_client, userdata, msg):
     print(('ERROR: Received ' + msg.topic + ' in on_message function' + str(msg.payload)))
 
 
-def on_message_homelogic(client, userdata, msg):
+def on_message_homelogic(_client, userdata, msg):
     print(msg.topic + " " + str(msg.payload))
     # topics = msg.topic.split("/")
 
@@ -66,7 +70,7 @@ def alphaEssThread():
     global oldTimeout
     global chromeDriver
     global monitor
-    global exit
+    global exitThread
 
     oldTimeout = current_sec_time()
 
@@ -84,9 +88,9 @@ def alphaEssThread():
         print("%s" % str(arg))
         traceback.print_exc()
 
-        #Report failure to Home Logic system check
+        # Report failure to Home Logic system check
         serviceReport.sendFailureToHomeLogic(serviceReport.ACTION_NOTHING, 'Failed to open Chrome driver')
-        exit = True
+        exitThread = True
         return
 
     print("Init AlphaEss monitor")
@@ -98,7 +102,7 @@ def alphaEssThread():
     # Delay after monitor start, otherwise url errors when getting data
     time.sleep(5)
 
-    while not exit:
+    while not exitThread:
         try:
             # print("Get monitor data")
             monitor_data = monitor.get_data()
@@ -116,7 +120,7 @@ def alphaEssThread():
             # Check if there is any message to send to AlphaEss.com
             if not sendQueue.empty():
                 sendMsg = sendQueue.get_nowait()
-                #print "SendMsg:", sendMsg
+                # print "SendMsg:", sendMsg
                 if sendMsg != "":
                     print("SendMsg: Not implemented yet")
 
@@ -174,7 +178,7 @@ except Exception:
     print("Error: unable to start the alphaEssThread")
 
 
-while not exit:
+while not exitThread:
     time.sleep(6)  # 60s
 
 if monitor is not None:
